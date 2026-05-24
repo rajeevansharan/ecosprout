@@ -1,0 +1,57 @@
+/* Custom styles for EcoSprout */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #198754 !important; /* Bootstrap success green */
+}
+
+.hero-section {
+    background: linear-gradient(rgba(25, 135, 84, 0.8), rgba(25, 135, 84, 0.8)), url('../images/hero-bg.jpg') center/cover;
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.card {
+    transition: transform 0.3s;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.plant-img {
+    height: 250px;
+    object-fit: cover;
+}
+
+main {
+    flex: 1;
+}
+
+.footer {
+    background-color: #212529;
+    color: white;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+.footer a {
+    color: #198754;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #fff;
+}
