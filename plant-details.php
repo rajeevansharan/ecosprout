@@ -22,7 +22,7 @@ if (!$plant) {
     <div class="row">
         <!-- Plant Image -->
         <div class="col-md-6 mb-4">
-            <img src="assets/images/<?php echo htmlspecialchars($plant['image']); ?>" class="img-fluid rounded shadow" alt="<?php echo htmlspecialchars($plant['name']); ?>" onerror="this.src='https://via.placeholder.com/600x600?text=Plant+Image'">
+            <img src="assets/images/<?php echo htmlspecialchars($plant['image']); ?>" class="img-fluid rounded shadow" alt="<?php echo htmlspecialchars($plant['name']); ?>">
         </div>
         
         <!-- Plant Details -->

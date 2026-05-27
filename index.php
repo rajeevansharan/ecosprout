@@ -19,7 +19,7 @@ $featured_plants = $stmt->fetchAll();
         <?php foreach ($featured_plants as $plant): ?>
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img src="assets/images/<?php echo htmlspecialchars($plant['image']); ?>" class="card-img-top plant-img" alt="<?php echo htmlspecialchars($plant['name']); ?>" onerror="this.src='https://via.placeholder.com/400x300?text=Plant+Image'">
+                    <img src="assets/images/<?php echo htmlspecialchars($plant['image']); ?>" class="card-img-top plant-img" alt="<?php echo htmlspecialchars($plant['name']); ?>">
                     <div class="card-body text-center">
                         <h5 class="card-title"><?php echo htmlspecialchars($plant['name']); ?></h5>
                         <p class="card-text text-muted"><?php echo htmlspecialchars($plant['category']); ?></p>

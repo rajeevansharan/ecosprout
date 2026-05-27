@@ -62,7 +62,7 @@ INSERT INTO `users` (`name`, `email`, `password`, `role`) VALUES
 
 -- Insert sample plants
 INSERT INTO `plants` (`name`, `description`, `price`, `category`, `care_instructions`, `image`, `stock`) VALUES
-('Monstera Deliciosa', 'A classic indoor plant with beautiful split leaves.', 25.00, 'Indoor', 'Medium indirect light. Water when top 2 inches of soil are dry.', 'monstera.jpg', 15),
-('Snake Plant', 'Very hardy plant, great for beginners.', 15.00, 'Indoor', 'Low light tolerant. Water sparingly.', 'snake_plant.jpg', 20),
-('Tomato Plant', 'Grow your own delicious tomatoes.', 5.00, 'Outdoor', 'Full sun. Keep soil consistently moist.', 'tomato.jpg', 50),
-('Aloe Vera', 'Medicinal succulent with fleshy leaves.', 12.00, 'Indoor', 'Bright direct light. Water infrequently.', 'aloe_vera.jpg', 30);
+('Monstera Deliciosa', 'A classic indoor plant with beautiful split leaves.', 25.00, 'Indoor', 'Medium indirect light. Water when top 2 inches of soil are dry.', 'Monstera Deliciosa.jpg', 15),
+('Snake Plant', 'Very hardy plant, great for beginners.', 15.00, 'Indoor', 'Low light tolerant. Water sparingly.', 'Snake Plant.webp', 20),
+('Tomato Plant', 'Grow your own delicious tomatoes.', 5.00, 'Outdoor', 'Full sun. Keep soil consistently moist.', 'Tomato Plant.webp', 50),
+('Aloe Vera', 'Medicinal succulent with fleshy leaves.', 12.00, 'Indoor', 'Bright direct light. Water infrequently.', 'Snake Plant.webp', 30);
