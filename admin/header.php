@@ -32,6 +32,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
                     <li class="nav-item"><a class="nav-link" href="orders.php">View Orders</a></li>
                     <li class="nav-item"><a class="nav-link" href="inquiries.php">View Inquiries</a></li>
                     <li class="nav-item"><a class="nav-link" href="users.php">Manage Users</a></li>
+                    <li class="nav-item"><a class="nav-link text-warning fw-semibold" href="reports.php">Sales Reports</a></li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="../index.php" target="_blank">View Website</a></li>

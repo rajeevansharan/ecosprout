@@ -13,6 +13,12 @@
                     <a class="nav-link" href="plants.php">Plants</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="services.php">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="workshops.php">Workshops</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="about.php">About</a>
                 </li>
                 <li class="nav-item">
@@ -26,8 +32,17 @@
                     </a>
                 </li>
                 <?php if(isset($_SESSION['user_id'])): ?>
+                    <?php if($_SESSION['user_role'] === 'admin'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary fw-bold" href="admin/index.php">Admin Panel</a>
+                        </li>
+                    <?php elseif($_SESSION['user_role'] === 'staff'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link text-info fw-bold" href="staff/index.php">Staff Portal</a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
-                        <a class="nav-link text-danger" href="logout.php">Logout</a>
+                        <a class="nav-link text-danger" href="logout.php">Logout (<?php echo htmlspecialchars($_SESSION['user_name']); ?>)</a>
                     </li>
                 <?php else: ?>
                     <li class="nav-item">

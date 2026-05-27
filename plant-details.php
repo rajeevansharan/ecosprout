@@ -43,15 +43,27 @@ if (!$plant) {
             <p><strong>Stock Available:</strong> <?php echo $plant['stock']; ?></p>
             
             <?php if ($plant['stock'] > 0): ?>
-                <form action="cart.php" method="POST" class="d-flex align-items-center gap-3">
-                    <input type="hidden" name="action" value="add">
-                    <input type="hidden" name="plant_id" value="<?php echo $plant['id']; ?>">
-                    <div class="input-group w-auto">
-                        <span class="input-group-text">Qty</span>
-                        <input type="number" name="quantity" class="form-control" value="1" min="1" max="<?php echo $plant['stock']; ?>" style="width: 80px;">
-                    </div>
-                    <button type="submit" class="btn btn-success btn-lg">Add to Cart</button>
-                </form>
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <?php if (isset($_SESSION['cart'][$plant['id']])): ?>
+                        <form action="cart.php" method="POST" class="d-flex align-items-center gap-3">
+                            <input type="hidden" name="action" value="remove">
+                            <input type="hidden" name="plant_id" value="<?php echo $plant['id']; ?>">
+                            <input type="hidden" name="redirect" value="plant-details.php?id=<?php echo $plant['id']; ?>">
+                            <button type="submit" class="btn btn-danger btn-lg">Remove</button>
+                        </form>
+                    <?php else: ?>
+                        <form action="cart.php" method="POST" class="d-flex align-items-center gap-3">
+                            <input type="hidden" name="action" value="add">
+                            <input type="hidden" name="plant_id" value="<?php echo $plant['id']; ?>">
+                            <input type="hidden" name="redirect" value="plant-details.php?id=<?php echo $plant['id']; ?>">
+                            <div class="input-group w-auto">
+                                <span class="input-group-text">Qty</span>
+                                <input type="number" name="quantity" class="form-control" value="1" min="1" max="<?php echo $plant['stock']; ?>" style="width: 80px;">
+                            </div>
+                            <button type="submit" class="btn btn-success btn-lg">Add to Cart</button>
+                        </form>
+                    <?php endif; ?>
+                <?php endif; ?>
             <?php else: ?>
                 <div class="alert alert-danger">Out of Stock</div>
             <?php endif; ?>

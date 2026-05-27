@@ -7,8 +7,18 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Cart must not be empty
-if (empty($_SESSION['cart'])) {
+// Determine selected items to purchase
+$selected_items = [];
+if (!empty($_SESSION['cart']) && !empty($_SESSION['selected_cart'])) {
+    foreach ($_SESSION['cart'] as $p_id => $qty) {
+        if (isset($_SESSION['selected_cart'][$p_id])) {
+            $selected_items[$p_id] = $qty;
+        }
+    }
+}
+
+// Cart/Selection must not be empty
+if (empty($selected_items)) {
     header("Location: cart.php");
     exit;
 }
@@ -22,13 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         $pdo->beginTransaction();
         
         // Calculate total
-        $ids = implode(',', array_keys($_SESSION['cart']));
+        $ids = implode(',', array_keys($selected_items));
         $stmt = $pdo->query("SELECT id, price, stock FROM plants WHERE id IN ($ids)");
         $plants_data = [];
         $total_amount = 0;
         
         while ($row = $stmt->fetch()) {
-            $qty = $_SESSION['cart'][$row['id']];
+            $qty = $selected_items[$row['id']];
             if ($qty > $row['stock']) {
                 throw new Exception("Not enough stock for plant ID " . $row['id']);
             }
@@ -45,14 +55,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         $stmt_item = $pdo->prepare("INSERT INTO order_items (order_id, plant_id, quantity, price) VALUES (?, ?, ?, ?)");
         $stmt_stock = $pdo->prepare("UPDATE plants SET stock = stock - ? WHERE id = ?");
         
-        foreach ($_SESSION['cart'] as $p_id => $qty) {
+        foreach ($selected_items as $p_id => $qty) {
             $price = $plants_data[$p_id]['price'];
             $stmt_item->execute([$order_id, $p_id, $qty, $price]);
             $stmt_stock->execute([$qty, $p_id]);
+            
+            // Remove ONLY purchased items from cart and selection
+            unset($_SESSION['cart'][$p_id]);
+            unset($_SESSION['selected_cart'][$p_id]);
         }
         
         $pdo->commit();
-        $_SESSION['cart'] = []; // clear cart
         $success = "Order placed successfully! Your Order ID is #$order_id.";
         
     } catch (Exception $e) {

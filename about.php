@@ -9,7 +9,7 @@
             <p>Our goal is to promote sustainable gardening practices, foster community engagement with nature, and ensure optimal plant health for all our customers.</p>
         </div>
         <div class="col-md-6 text-center">
-            <img src="https://via.placeholder.com/500x400?text=EcoSprout+Nursery" class="img-fluid rounded shadow-sm" alt="About EcoSprout">
+            <img src="assets/images/about.jpg" class="img-fluid rounded shadow-sm" alt="About EcoSprout">
         </div>
     </div>
 </div>
