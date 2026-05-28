@@ -12,8 +12,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $desc = $_POST['description'];
         $care = $_POST['care_instructions'];
         
-        $stmt = $pdo->prepare("INSERT INTO plants (name, description, price, category, care_instructions, stock) VALUES (?, ?, ?, ?, ?, ?)");
-        if ($stmt->execute([$name, $desc, $price, $category, $care, $stock])) {
+        $image = 'default.jpg';
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+            $tmp_name = $_FILES['image']['tmp_name'];
+            $file_name = time() . '_' . basename($_FILES['image']['name']);
+            if (move_uploaded_file($tmp_name, '../assets/images/' . $file_name)) {
+                $image = $file_name;
+            }
+        }
+        
+        $stmt = $pdo->prepare("INSERT INTO plants (name, description, price, category, care_instructions, stock, image) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        if ($stmt->execute([$name, $desc, $price, $category, $care, $stock, $image])) {
             $message = "<div class='alert alert-success'>Plant added successfully.</div>";
         }
     } elseif (isset($_POST['action']) && $_POST['action'] == 'delete') {
@@ -33,7 +42,7 @@ $plants = $pdo->query("SELECT * FROM plants ORDER BY id DESC")->fetchAll();
 <div class="card mb-4">
     <div class="card-header bg-success text-white">Add New Plant</div>
     <div class="card-body">
-        <form action="plants.php" method="POST">
+        <form action="plants.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="action" value="add">
             <div class="row">
                 <div class="col-md-6 mb-3">
@@ -51,6 +60,10 @@ $plants = $pdo->query("SELECT * FROM plants ORDER BY id DESC")->fetchAll();
                 <div class="col-md-6 mb-3">
                     <label>Category</label>
                     <input type="text" name="category" class="form-control" required>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label>Plant Image</label>
+                    <input type="file" name="image" class="form-control" accept="image/*">
                 </div>
                 <div class="col-md-12 mb-3">
                     <label>Description</label>
@@ -72,6 +85,7 @@ $plants = $pdo->query("SELECT * FROM plants ORDER BY id DESC")->fetchAll();
         <thead class="table-dark">
             <tr>
                 <th>ID</th>
+                <th>Image</th>
                 <th>Name</th>
                 <th>Category</th>
                 <th>Price</th>
@@ -83,6 +97,7 @@ $plants = $pdo->query("SELECT * FROM plants ORDER BY id DESC")->fetchAll();
             <?php foreach ($plants as $p): ?>
                 <tr>
                     <td><?php echo $p['id']; ?></td>
+                    <td><img src="../assets/images/<?php echo htmlspecialchars($p['image']); ?>" width="50" height="50" class="rounded object-fit-cover" onerror="this.src='https://via.placeholder.com/50'"></td>
                     <td><?php echo htmlspecialchars($p['name']); ?></td>
                     <td><?php echo htmlspecialchars($p['category']); ?></td>
                     <td>$<?php echo number_format($p['price'], 2); ?></td>
