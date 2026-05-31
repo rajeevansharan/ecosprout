@@ -126,9 +126,9 @@ if (!empty($_SESSION['cart'])) {
                                 <img src="assets/images/<?php echo htmlspecialchars($item['image']); ?>" width="50" height="50" class="me-2 rounded object-fit-cover" onerror="this.src='https://via.placeholder.com/50'">
                                 <?php echo htmlspecialchars($item['name']); ?>
                             </td>
-                            <td>$<?php echo number_format($item['price'], 2); ?></td>
+                            <td>LKR <?php echo number_format($item['price'], 2); ?></td>
                             <td><?php echo $item['quantity']; ?></td>
-                            <td>$<?php echo number_format($item['subtotal'], 2); ?></td>
+                            <td>LKR <?php echo number_format($item['subtotal'], 2); ?></td>
                             <td>
                                 <form action="cart.php" method="POST">
                                     <input type="hidden" name="action" value="remove">
@@ -140,7 +140,7 @@ if (!empty($_SESSION['cart'])) {
                     <?php endforeach; ?>
                     <tr>
                         <td colspan="4" class="text-end fw-bold">Total:</td>
-                        <td colspan="2" class="fw-bold text-success fs-5" id="cart-total-price">$<?php echo number_format($total_price, 2); ?></td>
+                        <td colspan="2" class="fw-bold text-success fs-5" id="cart-total-price">LKR <?php echo number_format($total_price, 2); ?></td>
                     </tr>
                 </tbody>
             </table>
@@ -182,7 +182,7 @@ document.querySelectorAll('.select-item').forEach(checkbox => {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                document.getElementById('cart-total-price').textContent = '$' + data.total_price;
+                document.getElementById('cart-total-price').textContent = 'LKR ' + data.total_price;
                 const anyChecked = Array.from(document.querySelectorAll('.select-item')).some(cb => cb.checked);
                 document.querySelectorAll('.checkout-btn').forEach(btn => {
                     if (anyChecked) {

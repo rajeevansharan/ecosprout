@@ -117,7 +117,7 @@ $plants = $pdo->query("SELECT * FROM plants ORDER BY id DESC")->fetchAll();
                             <td><strong><?php echo htmlspecialchars($p['name']); ?></strong></td>
                             <td><em class="text-success"><?php echo htmlspecialchars($p['botanical_name'] ?? 'N/A'); ?></em></td>
                             <td><span class="badge bg-secondary"><?php echo htmlspecialchars($p['category']); ?></span></td>
-                            <td class="fw-bold">$<?php echo number_format($p['price'], 2); ?></td>
+                            <td class="fw-bold">LKR <?php echo number_format($p['price'], 2); ?></td>
                             <td>
                                 <?php if ($p['stock'] == 0): ?>
                                     <span class="badge bg-danger">Out of stock</span>

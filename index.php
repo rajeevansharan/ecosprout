@@ -23,7 +23,7 @@ $featured_plants = $stmt->fetchAll();
                     <div class="card-body text-center">
                         <h5 class="card-title"><?php echo htmlspecialchars($plant['name']); ?></h5>
                         <p class="card-text text-muted"><?php echo htmlspecialchars($plant['category']); ?></p>
-                        <p class="card-text fw-bold text-success">$<?php echo number_format($plant['price'], 2); ?></p>
+                        <p class="card-text fw-bold text-success">LKR <?php echo number_format($plant['price'], 2); ?></p>
                         <a href="plant-details.php?id=<?php echo $plant['id']; ?>" class="btn btn-outline-success">View Details</a>
                     </div>
                 </div>

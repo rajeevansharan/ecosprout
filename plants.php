@@ -58,7 +58,7 @@ $categories = $cat_stmt->fetchAll(PDO::FETCH_COLUMN);
                         <div class="card-body text-center">
                             <h5 class="card-title"><?php echo htmlspecialchars($plant['name']); ?></h5>
                             <p class="card-text text-muted mb-1"><small><?php echo htmlspecialchars($plant['category']); ?></small></p>
-                            <p class="card-text fw-bold text-success">$<?php echo number_format($plant['price'], 2); ?></p>
+                            <p class="card-text fw-bold text-success">LKR <?php echo number_format($plant['price'], 2); ?></p>
                             <a href="plant-details.php?id=<?php echo $plant['id']; ?>" class="btn btn-outline-success btn-sm w-100">View Details</a>
                         </div>
                     </div>

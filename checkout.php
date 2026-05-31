@@ -368,7 +368,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
                             <span><?php echo htmlspecialchars($plant['name']); ?>
                                 <span style="color:#888;font-size:.85rem;"> × <?php echo $qty; ?></span>
                             </span>
-                            <span>$<?php echo number_format($subtotal, 2); ?></span>
+                            <span>LKR <?php echo number_format($subtotal, 2); ?></span>
                         </div>
                         <?php endforeach; ?>
 
@@ -379,11 +379,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
 
                         <div class="order-total">
                             <span>Total</span>
-                            <span>$<?php echo number_format($display_total, 2); ?></span>
+                            <span>LKR <?php echo number_format($display_total, 2); ?></span>
                         </div>
 
                         <button type="submit" name="place_order" class="btn-pay">
-                            Pay $<?php echo number_format($display_total, 2); ?> →
+                            Pay LKR <?php echo number_format($display_total, 2); ?> →
                         </button>
 
                         <p class="secure-note">

@@ -47,7 +47,7 @@ Follow these simple steps to get the project running on your local machine.
    *This script will automatically create all the necessary tables and insert sample plants and a default Admin account.*
 
 4. **Run the Application:**
-   - Open your web browser and go to: `http://localhost/ecosprout-V2`
+   - Open your web browser and go to: `http://localhost/ecosprout`
    - You should now see the EcoSprout home page!
 
 ---

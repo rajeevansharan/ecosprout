@@ -21,14 +21,18 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id ASC")->fetchAll();
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
                         <div class="card-body bg-white d-flex flex-column p-4">
-                            <div class="bg-success bg-opacity-10 rounded-3 p-3 mb-3 text-center">
-                                <span style="font-size: 2.5rem;">🌿</span>
-                            </div>
+                            <?php if (!empty($srv['image']) && $srv['image'] !== 'default_service.jpg'): ?>
+                                <img src="assets/images/<?php echo htmlspecialchars($srv['image']); ?>" class="card-img-top mb-3 rounded-3" alt="<?php echo htmlspecialchars($srv['name']); ?>" style="height: 180px; width: 100%; object-fit: cover;">
+                            <?php else: ?>
+                                <div class="bg-success bg-opacity-10 rounded-3 p-3 mb-3 text-center" style="height: 180px; display: flex; align-items: center; justify-content: center;">
+                                    <span style="font-size: 3.5rem;">🌿</span>
+                                </div>
+                            <?php endif; ?>
                             <h5 class="fw-bold text-dark"><?php echo htmlspecialchars($srv['name']); ?></h5>
                             <p class="text-muted small flex-grow-1"><?php echo htmlspecialchars($srv['description']); ?></p>
                             <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
-                                <span class="fs-5 fw-bold text-success">From $<?php echo number_format($srv['price'], 2); ?></span>
-                                <a href="<?php echo isset($_SESSION['user_id']) ? 'payment.php' : 'login.php'; ?>" class="btn btn-outline-success btn-sm px-3">Book Now</a>
+                                <span class="fs-5 fw-bold text-success">From LKR <?php echo number_format($srv['price'], 2); ?></span>
+                                <a href="<?php echo isset($_SESSION['user_id']) ? 'payment.php?service_id=' . $srv['id'] : 'login.php'; ?>" class="btn btn-outline-success btn-sm px-3">Book Now</a>
                             </div>
                         </div>
                     </div>
@@ -39,7 +43,7 @@ $services = $pdo->query("SELECT * FROM services ORDER BY id ASC")->fetchAll();
         <div class="text-center mt-5 p-5 rounded-4" style="background-color: #f0faf3;">
             <h3 class="fw-bold text-success">Need a Custom Service?</h3>
             <p class="text-muted mb-4">Our horticultural experts can design a personalized gardening solution for your home, office, or commercial space.</p>
-            <a href="<?php echo isset($_SESSION['user_id']) ? 'payment.php' : 'login.php'; ?>" class="btn btn-success btn-lg px-5">Get a Free Consultation</a>
+            <a href="<?php echo isset($_SESSION['user_id']) ? 'payment.php?service_id=custom' : 'login.php'; ?>" class="btn btn-success btn-lg px-5">Get a Free Consultation</a>
         </div>
     <?php endif; ?>
 </div>

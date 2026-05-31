@@ -100,7 +100,7 @@ $plants = $pdo->query("SELECT * FROM plants ORDER BY id DESC")->fetchAll();
                     <td><img src="../assets/images/<?php echo htmlspecialchars($p['image']); ?>" width="50" height="50" class="rounded object-fit-cover" onerror="this.src='https://via.placeholder.com/50'"></td>
                     <td><?php echo htmlspecialchars($p['name']); ?></td>
                     <td><?php echo htmlspecialchars($p['category']); ?></td>
-                    <td>$<?php echo number_format($p['price'], 2); ?></td>
+                    <td>LKR <?php echo number_format($p['price'], 2); ?></td>
                     <td><?php echo $p['stock']; ?></td>
                     <td>
                         <form action="plants.php" method="POST" class="d-inline" onsubmit="return confirm('Delete this plant?');">

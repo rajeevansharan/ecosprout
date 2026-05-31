@@ -24,14 +24,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="contact.php">Contact</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cart.php">Cart 
-                        <span class="badge bg-success">
-                            <?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : '0'; ?>
-                        </span>
-                    </a>
-                </li>
                 <?php if(isset($_SESSION['user_id'])): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.php">Cart 
+                            <span class="badge bg-success">
+                                <?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : '0'; ?>
+                            </span>
+                        </a>
+                    </li>
                     <?php if($_SESSION['user_role'] === 'admin'): ?>
                         <li class="nav-item">
                             <a class="nav-link text-primary fw-bold" href="admin/index.php">Admin Panel</a>

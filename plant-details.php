@@ -29,7 +29,7 @@ if (!$plant) {
         <div class="col-md-6">
             <h1 class="display-5 fw-bold"><?php echo htmlspecialchars($plant['name']); ?></h1>
             <p class="text-muted fs-5"><?php echo htmlspecialchars($plant['category']); ?></p>
-            <h2 class="text-success mb-4">$<?php echo number_format($plant['price'], 2); ?></h2>
+            <h2 class="text-success mb-4">LKR <?php echo number_format($plant['price'], 2); ?></h2>
             
             <p class="lead"><?php echo nl2br(htmlspecialchars($plant['description'])); ?></p>
             
